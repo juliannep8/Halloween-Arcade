@@ -322,7 +322,7 @@ async def main():
         pygame.draw.rect(screen, COLOR_ENEMY, e_rect, border_radius=4)
 
         score_txt = font.render(
-            f"Player (Red): {state['player_score']}   |   Enemy (Grey): {state['enemy_score']}   |   Candies Left: {len(state['candies'])}",
+            f"Player: {state['player_score']}   |   Enemy: {state['enemy_score']}   |   Candies Left = {len(state['candies'])}",
             True,
             COLOR_TEXT
         )
@@ -330,11 +330,11 @@ async def main():
 
         if now < state["stun_until"]:
             rem = (state["stun_until"] - now) / 1000.0
-            status_str = f"CAUGHT! Respawned at start. Cooldown: {rem:.1f}s"
+            status_str = f"CAUGHT! Cooldown: {rem:.1f}s"
         elif state["game_over"]:
-            status_str = f"GAME OVER — {state['winner']} Press [R] to Restart."
+            status_str = f"GAME OVER — {state['winner']} Press R to Restart."
         else:
-            status_str = f"Enemy FSM: {state['enemy_state']} | Target: {state['enemy_target']} | [H] Debug [R] Reset"
+            status_str = f"Enemy FSM: {state['enemy_state']} | Target: {state['enemy_target']} | H = Debug , R = Reset"
 
         status_txt = small_font.render(status_str, True, COLOR_PATH)
         screen.blit(status_txt, (12, 40))
